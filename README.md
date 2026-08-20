@@ -23,3 +23,21 @@ compare_splicing_runs(
     outlier_source="Python",  # must match one run's "label". The number of outliers from this source will draw a vertical dashed line
 )
 ```
+
+### `Venn diagram of overlapping gene/junction sets`
+
+Compares the gene/junction sets of two FRASER outputs (any mix of Python/R) and draws a Venn diagram of the overlap.
+
+```python
+from Venn_diagram import compare_outputs
+
+compare_outputs(
+    source_1="results/fraser_summary_filtered_junctions.csv",  # path to a CSV/TSV, or an already-loaded DataFrame containing only the filtered outliers
+    source_2="results/raw-local-Spleen_results_per_junction.tsv", # similar to source_1
+    level="junction",  # "junction" or "gene" level comparison
+    cohort="Spleen", # the name of the cohort for the title
+    name_1="Python", # label of the first source
+    name_2="R", # label of the second source
+    out_path="plots/venn_junction_overlap.png",  # if given, the figure is saved here
+)
+```
