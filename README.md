@@ -3,7 +3,7 @@ This repository contains the code to create different benchmarking visualization
 
 ## Usage
 
-### `compare_splicing_runs`
+### `Proportion of splicing outliers with rare splice-disrupting variants`
 
 Compares an arbitrary set of FRASER runs (any mix of Python/R outputs) on the same cohort and plots splicing-outlier enrichment for supporting variants.
 
