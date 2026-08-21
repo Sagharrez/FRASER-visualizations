@@ -41,3 +41,23 @@ compare_outputs(
     out_path="plots/venn_junction_overlap.png",  # if given, the figure is saved here
 )
 ```
+
+### `Step timing comparison across FRASER runs`
+
+Compares an arbitrary set of FRASER runs (any mix of Python/R outputs) on aligned pipeline-step buckets and plots per-cohort timing bars. It plots timings for all the cohorts as subfolders.
+
+```python
+from Compare_timing import compare_timing, plot_timing
+
+runs = [
+    Run("R",          "R",      "R_V2/AE_CPU_v2/{cohort}/*_timing.csv"),
+    Run("Python CPU", "Python", "Python/{cohort}/AE_16ep_CPU/protrider.log"),
+    Run("Python GPU", "Python", "Python/{cohort}/AE_16ep/protrider.log"),
+]
+fig = plot_timing(
+    compare_timing(runs), 
+    runs, 
+    baseline="R", 
+    title="FRASER step timing by cohort on autoencode with 16 epochs", 
+    output_path = 'plots/fraser_timing_R_Py.png')
+```
