@@ -61,3 +61,23 @@ fig = plot_timing(
     title="FRASER step timing by cohort on autoencode with 16 epochs", 
     output_path = 'plots/fraser_timing_R_Py.png')
 ```
+
+### `Subset recovery across tissues`
+
+For each tissue's own outlier (sample, junction) pairs, checks how many are also flagged as outliers in a joint (Subset/union) FRASER run, and plots a horizontal stacked bar of recovered vs. missed pairs per tissue.
+
+```python
+from Subset_recovery import plot_subset_recovery
+
+root = "/path/to/root"
+fig, ax, summary = plot_subset_recovery(
+    f"{root}/Subset/PCA/fraser_summary_filtered_junctions.csv", # path to early fusion run filtered junctions
+    {
+        "Brain": f"{root}/Brain/PCA/fraser_summary_filtered_junctions.csv", # paths to each of the cohorts' run filtered junctions
+        "Lung": f"{root}/Lung/PCA/fraser_summary_filtered_junctions.csv",
+        "Pancreas": f"{root}/Pancreas/PCA/fraser_summary_filtered_junctions.csv",
+        "Spleen": f"{root}/Spleen/PCA/fraser_summary_filtered_junctions.csv",
+    },
+)
+fig.savefig("plots/subset_recovery.png", dpi=150, bbox_inches="tight")
+```
